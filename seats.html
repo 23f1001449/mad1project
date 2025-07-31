@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seat Booking</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+.seating {
+    display: inline-block;
+    margin: 20px auto;
+}
+
+.row {
+    margin: 10px;
+}
+
+.row-label {
+    display: inline-block;
+    width: 30px;
+    font-weight: bold;
+}
+
+.seat {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.seat input {
+    display: none;
+}
+
+.seat.booked {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.seat:not(.booked):hover {
+    background-color: #90ee90;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Select Your Seats</h1>
+    <form action="/book" method="POST">
+        <div class="seating">
+            {% for row, seats in layout.items() %}
+                <div class="row">
+                    <span class="row-label">{{ row }}</span>
+                    {% for seat in seats %}
+                        <label class="seat {% if seat.booked %}booked{% endif %}">
+                            {% if not seat.booked %}
+                                <input type="checkbox" name="seat" value="{{ seat.id }}">
+                            {% endif %}
+                            {{ seat.number }}
+                        </label>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit">Book Selected Seats</button>
+    </form>
+</body>
+</html>

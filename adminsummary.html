@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Summary Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <style>
+        #charts-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .chart-box {
+            text-align: center;
+        }
+
+        .chart-box img {
+            width: 350px;
+            height: 350px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        <div id="canvas" class="overflow-auto">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <a href="#" class="navbar-brand">Summary</a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a href="/signin" class="nav-link">Log Out</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/admindashhome" class="nav-link">Go Back</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+                
+
+            
+
+            <div id="charts-container">
+                <div class="chart-box">
+                    <h3>Revenue from each parking lot</h3>
+                    <img src="/static/revenue_chart.png" alt="Revenue Chart">
+                </div>
+                <div class="chart-box">
+                    <h3>Available vs Occupied Spots</h3>
+                    <img src="/static/status_chart.png" alt="Status Chart">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

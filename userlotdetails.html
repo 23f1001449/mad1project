@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parking Spot Booking - {{ lot.locname }}</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <!-- <link rel="stylesheet" href="/static/home.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .parking-lot-info {
+            margin-bottom: 30px;
+        }
+
+        .parking-spots {
+            display: inline-block;
+        }
+
+        .row {
+            margin: 10px 0;
+        }
+
+        .spot {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            border-radius: 5px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #eee;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .spot.available:hover {
+            background-color: #90ee90;
+        }
+
+        .spot.occupied {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        form {
+            display: inline;
+        }
+
+        .legend {
+            margin-top: 20px;
+        }
+
+        .legend div {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .available-box {
+            background-color: #eee;
+        }
+
+        .occupied-box {
+            background-color: #ccc;
+        }
+
+        .booking-canvas {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        input[type="radio"].btn-check {
+            display: none;
+        }
+
+        .spot.available {
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+        .spot.occupied {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        input[type="radio"].btn-check:checked+.spot.available {
+            background-color: #90ee90;
+            /* green when selected */
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="booking-canvas">
+        <h2>Parking at {{ lot.locname }}</h2>
+        <div class="parking-lot-info">
+            <p><strong>Address:</strong> {{ lot.address }}</p>
+            <p><strong>Pincode:</strong> {{ lot.pincode }}</p>
+            <p><strong>Price per hour:</strong> ₹{{ lot.price }}</p>
+        </div>
+
+        <form method="POST" action="/userlotdetails/{{ lot.id }}/{{ this_user.id }}">
+
+            <input type="hidden" name="lid" value="{{ lot.id }}">
+            <input type="hidden" name="uid" value="{{ this_user.id }}">
+
+            <div class="parking-spots text-center">
+                {% for spot in spots %}
+                {% if spot.status == 'A' %}
+                <input type="radio" class="btn-check" name="sid" id="spot{{ spot.id }}" value="{{ spot.id }}" required>
+
+                <label class="spot available" for="spot{{ spot.id }}">{{ spot.id }}</label>
+                {% else %}
+                <label class="spot occupied">{{ spot.id }}</label>
+                {% endif %}
+
+                {% if loop.index % 5 == 0 %}<br>{% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="mt-4">
+                <label for="vehicle_number"><strong>Vehicle Number:</strong></label>
+                <input type="text" id="vehicle_number" name="vehicle_number" required class="form-control"
+                    style="max-width: 300px; margin: 10px auto;">
+            </div>
+
+            <div class="mt-4">
+                <label for="time_of_parking"><strong>Time(in hours):</strong></label>
+                <input type="text" id="time_of_parking" name="time_of_parking" required class="form-control"
+                    style="max-width: 300px; margin: 10px auto;">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Book Spot</button>
+
+
+        </form>
+
+    </div>
+
+    <div class="legend">
+        <div>
+            <div class="box available-box"></div>Available
+        </div>
+        <div>
+            <div class="box occupied-box"></div>Occupied
+        </div>
+    </div>
+</body>
+
+</html>

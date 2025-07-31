@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Parking Lot</title>
+    <link rel="stylesheet" href="/static/entry.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+
+
+<body>
+    <div id="main">
+        <div id="canvas">
+            <div id="form-body">
+                <h1 class="head">Edit Parking Lot</h1>
+                <form action="/editparkinglot/{{ lot.id }}" method="POST">
+                    <div class="mb-3">
+                        <label for="locname" class="form-label">Prime Location Name</label>
+                        <input type="text" class="form-control"  value="{{ lot.locname }}" name="locname">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control"  value="{{ lot.address }}" name="address">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pincode" class="form-label">Pin Code</label>
+                        <input type="text" class="form-control"  value="{{ lot.pincode }}" name="pincode">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price(per hour)</label>
+                        <input type="text" class="form-control"  value="{{ lot.price }}" name="price">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="maxspots" class="form-label">Maximum spots</label>
+                        <input type="text" class="form-control"  value="{{ lot.maxspots }}" name="maxspots">
+                    </div>
+
+                    <div class="text-center justify-content-between">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="/admindashhome" class="btn btn-secondary mt-2">Cancel</a>   
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

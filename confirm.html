@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Confirmed</title>
+    <link rel="stylesheet" href="/static/entry.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        #canvas .head {
+            font-weight: 600;
+            color: #333;
+        }
+
+        #canvas p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        #canvas a.btn-primary {
+            background-color: #2575fc;
+            border-color: #2575fc;
+            transition: background-color 0.3s ease;
+        }
+
+        #canvas a.btn-primary:hover {
+            background-color: #1a5ed9;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas">
+        <div class="text-center">
+            <h2 class="head">🎉 Booking Confirmed!</h2>
+            <p class="mb-4">Thank you for booking your parking spot with us.</p>
+
+            <a href="/userdash/{{ this_user.id }}" class="btn btn-primary">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

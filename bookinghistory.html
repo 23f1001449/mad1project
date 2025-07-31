@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container-fluid p-0">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Welcome, {{ this_user.username }}</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/userdash/{{ this_user.id }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/bookinghistory/{{ this_user.id }}">My Bookings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/signin">Log Out</a>
+                    </li>
+                </ul>
+                <form class="d-flex" action="/search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <select class="form-select me-2" name="key">
+                        <option selected>Select</option>
+                        <option value="lot">Parking Lot</option>
+                        <option value="spot">Parking Spot</option>
+                    </select>
+                    <input class="btn btn-outline-success" type="submit" value="Search">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="mb-4 text-center">Your Active Bookings</h2>
+
+        {% if occupied_spots %}
+        <table class="table table-bordered text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Spot ID</th>
+                    <th>Lot ID</th>
+                    <th>Vehicle Number</th>
+                    <th>Time (Hours)</th>
+                    <th>Estimated Cost</th>
+                    <th>Free Spot</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for spot in occupied_spots %}
+                <tr>
+                    <td>{{ spot.id }}</td>
+                    <td>{{ spot.lot_id }}</td>
+                    <td>{{ spot.vehicle_number }}</td>
+                    <td>{{ spot.time_of_parking }}</td>
+                    <td>₹{{ spot.estimated_cost }}</td>
+                    <td>
+                        <form action="/free_spot/{{ user_id }}/{{ spot.id }}" method="POST">
+                            <button type="submit" class="btn btn-danger btn-sm">Free</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-success text-center">You have no active bookings.</div>
+        {% endif %}
+    </div>
+</body>
+</html>

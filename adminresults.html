@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Search Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .result-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.2s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .section-title {
+            margin-top: 40px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="mb-4 text-center">Admin Search Results for "{{ search_word }}"</h2>
+
+    
+
+        {%if results.users or results.lots %}
+        {% if results.users %}
+        <h4 class="section-title">Users</h4>
+        <div class="row">
+            {%for user in results.users %}
+            <div class="col-mid-4 mb-4">
+                <div class="card result-card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.username }}</h5>
+                        <p class="card-text"><strong>User ID: </strong>{{ user.id }}</p>
+                        <p class="card-text"><strong>User email: </strong>{{ user.email }}</p>
+                        <p class="card-text"><strong>User address: </strong>{{ user.address }}</p>
+                        <p class="card-text"><strong>User pincode: </strong>{{ user.pincode }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        
+
+        {% if results.lots and results.lots|length>0 %}
+        <h4 class="section-title">Parking Lots</h4>
+        <div class="row">
+            {% for lot in results.lots %}
+            <div class="col-md-4 mb-4">
+                <div class="card result-card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ lot.locname }}</h5>
+                        <p class="card-text">
+                            <strong>Address:</strong> {{ lot.address }}<br>
+                            <strong>Pincode:</strong> {{ lot.pincode }}
+                        </p>
+                        <a href="/lotdetails/{{ lot.id }}" class="btn btn-primary">View Lot</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        {% else %}
+        <div class="no-results">
+            <h4>No results found.</h4>
+            <a href="/admindashhome" class="back-link">← Go Back</a>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

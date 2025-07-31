@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/static/entry.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <style>
+        a{
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="canvas">
+            <div id="form-body">
+                <h1 class="head">Sign Up</h1>
+                <form action="/signup" method="POST">
+                <div class="EMAIL">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" name="email">
+                </div>
+
+                <div class="USERNAME">
+                    <label for="name" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="name" name="username">
+                </div>
+
+                <div class="PASSWORD">
+                    <label for="pass" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pass" name="password">
+                </div>
+
+                <div class="ADDRESS">
+                    <label for="add" class="form-label">Address</label>
+                    <input type="address" class="form-control" id="add" name="address">
+                </div>
+
+                <div class="PINCODE">
+                    <label for="pin" class="form-label">Pin Code</label>
+                    <input type="pincode" class="form-control" id="pin" name="pincode">
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Sign up"><br>
+                    Already have an account? <a href="/signin">Sign In!</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

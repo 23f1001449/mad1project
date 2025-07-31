@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="/static/entry.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+    <style>
+        a{
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="canvas">
+            <div id="form-body">
+                <h1 class="head">Sign In</h1>
+                <form action="/signin" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="name" name="username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="pass" name="password"><br>
+                </div>
+
+                <div class="text-center">
+                    <input type="submit" class="btn btn-primary" value="Sign in"><br>
+                    New user? <a href="/signup">Sign Up!</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
