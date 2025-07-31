@@ -1,0 +1,36 @@
+.parking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.spot {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.spot:hover {
+    transform: scale(1.05);
+}
+
+.available {
+    background-color: #28a745;
+}
+
+.booked {
+    background-color: #dc3545;
+    cursor: not-allowed;
+}
+
+.reserved {
+    background-color: #ffc107;
+    cursor: not-allowed;
+}
